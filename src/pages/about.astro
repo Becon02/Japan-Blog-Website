@@ -1,10 +1,19 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
 import HeaderBlock from "../components/HeaderBlock.astro";
+import * as AboutMeContent from "../content/AboutMeContent.md";
 ---
 
 <BaseLayout>
-  <HeaderBlock />
+  <HeaderBlock slot="header" />
 
-  <!-- 📄 Page-specific content goes here -->
+  <div class="about-container">
+    <!-- Text on the left -->
+    <div class="about-text">
+      <AboutMeContent.Content />
+    </div>
+
+    <!-- Image on the right -->
+    <img src="/About-Me-Image.jpg" alt="Foto de Martín" class="about-image" />
+  </div>
 </BaseLayout>
