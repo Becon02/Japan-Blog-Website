@@ -3,7 +3,9 @@ const {
   title = "Caminando a traves de Japon",
   subtitle = "Un viajero con mochila y camara, siguiendo su propio camino",
 } = Astro.props;
-// This lets you set a custom page title, like "Inicio" or "Galería"
+
+import "../styles/BaseLayout.css";
+import NavBar from "../components/NavBar.astro";
 ---
 
 <html lang="es">
@@ -16,111 +18,12 @@ const {
       href="https://fonts.googleapis.com/css2?family=Joti+One&display=swap"
       rel="stylesheet"
     />
-
-    <style>
-      body {
-        margin: 0;
-        font-family: sans-serif;
-        background: #f8f5ec; /* Cream background */
-        color: #111;
-        padding: 2rem;
-        text-align: center;
-      }
-
-      nav {
-        display: flex;
-        justify-content: center;
-        gap: 1.2rem;
-        margin: 1rem 0 2rem 0;
-        align-items: center;
-      }
-
-      nav img {
-        width: 28px;
-        height: 28px;
-        cursor: pointer;
-        transition: transform 0.2s ease;
-      }
-
-      nav img:hover {
-        transform: scale(1.2);
-      }
-
-      a {
-        text-decoration: none;
-      }
-
-      :global(.main-title) {
-        font-family: "Joti One", sans-serif;
-        font-size: 2.5rem;
-        color: #e86b2e;
-        margin-top: 0.3rem;
-        margin-bottom: 0.3rem;
-      }
-
-      :global(.about-container) {
-        display: flex;
-        flex-direction: row;
-        gap: 2rem;
-        align-items: flex-start;
-        justify-content: center;
-        flex-wrap: wrap;
-        max-width: 1100px;
-        margin: 0 auto;
-        padding: 2rem 1rem;
-      }
-
-      :global(.about-text) {
-        text-align: justify;
-        max-width: 600px;
-        justify-content: center;
-      }
-
-      :global(.about-image) {
-        width: 150px;
-        height: auto;
-        border-radius: 0.5rem;
-        object-fit: cover;
-        flex-shrink: 0;
-        align-self: center;
-      }
-
-      @media (max-width: 768px) {
-        :global(.about-container) {
-          flex-direction: column;
-          align-items: center;
-        }
-
-        :global(.about-text) {
-          text-align: justify;
-          width: 100%;
-          padding: 0 1rem;
-        }
-
-        :global(.about-image) {
-          width: 100%;
-          max-width: 200px;
-        }
-      }
-    </style>
   </head>
 
   <body>
-
     <slot name="header" />
 
-    <!-- Navigation Bar with my PNG Icons -->
-    <nav>
-      <a href="/"><img src="/Buttons/Home_Orange.png" alt="Inicio" /></a>
-      <a href="/about"><img src="/Buttons/ID_Orange.png" alt="Sobre mí" /></a>
-      <a href="/gallery"><img src="/Buttons/Camera_Orange.png" alt="Fotos" /></a
-      >
-      <a href="/map"><img src="/Buttons/World_Orange.png" alt="Mapa" /></a>
-      <a href="/stages"
-        ><img src="/Buttons/FootStep_Orange.png" alt="Etapas" /></a
-      >
-      <a href="/links"><img src="/Buttons/Link_Orange.png" alt="Redes" /></a>
-    </nav>
+    <NavBar />
 
     <slot />
   </body>

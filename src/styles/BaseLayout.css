@@ -1,0 +1,187 @@
+/* 🌐 Global Styles */
+html, body {
+    margin: 0;
+        padding: 0;
+        font-family: sans-serif;
+        background: #f8f5ec;
+        color: #111;
+        padding: 2rem 1rem;
+        height: auto;
+        min-height: 100vh;
+        text-align: center;
+}
+
+nav {
+    display: flex;
+    justify-content: center;
+    gap: 1.2rem;
+    margin: 1rem 0 2rem 0;
+    align-items: center;
+}
+
+nav img {
+    width: 28px;
+    height: 28px;
+    cursor: pointer;
+    transition: transform 0.2s ease;
+}
+
+nav img:hover {
+    transform: scale(1.2);
+}
+
+a {
+    text-decoration: none;
+}
+
+/* 🎯 Title */
+.main-title {
+    font-family: "Joti One", sans-serif;
+    font-size: 2.5rem;
+    color: #e86b2e;
+    margin-top: 0.3rem;
+    margin-bottom: 0.3rem;
+}
+
+/* 🧱 About Wrapper */
+.about-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 4rem;
+    
+    /* más espacio horizontal */
+    padding: 2rem 1rem;
+    max-width: 1200px;
+    margin: 0 auto;
+    flex-wrap: nowrap;
+       
+}
+
+/* 📄 Text Block */
+.about-text {
+    flex: 1;
+    max-width: 600px;
+    text-align: justify;
+    font-size: 1.1rem;
+    line-height: 1.7;
+}
+
+/* 🖼️ Side Images */
+.about-side-image {
+    width: 180px;
+    height: auto;
+    border-radius: 0.5rem;
+    object-fit: cover;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.about-image-group {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-width: 200px;
+}
+
+.about-image-group em {
+    margin-top: 0.3rem;
+    font-size: 0.9rem;
+    color: #555;
+    text-align: center;
+}
+
+/* ⬅️➡️ Alternate Sides */
+.left {
+    order: -1;
+}
+
+.right {
+    order: 1;
+}
+
+/* 💡 Hide Markdown images on desktop */
+.about-text img {
+    display: none;
+}
+
+.about-images {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+/* ✅ Ocultar los captions del markdown en desktop */
+@media (min-width: 769px) {
+    .about-text em {
+        display: none;
+    }
+
+    .desktop-caption {
+        display: block;
+        text-align: center;
+        font-size: 0.9rem;
+        margin-top: 0.5rem;
+        margin-bottom: 1.5rem;
+        color: #555;
+    }
+
+    .texas-align {
+        padding-top: 4rem;
+    }
+
+    .twitch-align {
+        padding-top: 31rem;
+    }
+
+    .uni-align {
+        padding-top: 50rem;
+    }
+
+    .today-align {
+        padding-top: 70rem;
+    }
+}
+
+/* 📱 Mobile styles */
+@media (max-width: 768px) {
+
+    .about-wrapper {
+        margin-top: 0rem;
+        margin-bottom: 0rem;
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .about-side-image {
+        display: none;
+    }
+
+    .about-text img {
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        margin-top: 1.5rem;
+        margin-bottom: 0.5rem;
+        width: 90%;
+        max-width: 200px;
+        border-radius: 0.5rem;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    }
+
+    .about-text {
+        width: 100%;
+        padding: 0 1rem;
+    }
+
+    .about-text em {
+        display: block;
+        text-align: center;
+        font-size: 0.9rem;
+        margin-top: 0.5rem;
+        margin-bottom: 1.5rem;
+        color: #555;
+    }
+
+    .desktop-caption {
+        display: none;
+    }
+}
