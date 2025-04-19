@@ -1,0 +1,99 @@
+/* 🌐 Base Layout Styles */
+
+html,
+body {
+    margin: 0;
+    padding: 0;
+    font-family: sans-serif;
+    background: #f8f5ec;
+    color: #111;
+    padding: 2rem 1rem;
+    min-height: 100vh;
+    text-align: center;
+}
+
+nav {
+    display: flex;
+    justify-content: center;
+    gap: 1.2rem;
+    margin: 1rem 0 2rem 0;
+    align-items: center;
+}
+
+nav img {
+    width: 28px;
+    height: 28px;
+    cursor: pointer;
+    transition: transform 0.2s ease;
+}
+
+nav img:hover {
+    transform: scale(1.2);
+}
+
+a {
+    text-decoration: none;
+}
+
+.main-title {
+    font-family: "Joti One", sans-serif;
+    font-size: 2.5rem;
+    color: #e86b2e;
+    margin-top: 0.3rem;
+    margin-bottom: 0.3rem;
+}
+
+.about-wrapper {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 4rem 1rem;
+}
+
+.about-text {
+    flex: 1;
+    max-width: 600px;
+    text-align: justify;
+    font-size: 1.1rem;
+    line-height: 1.7;
+    position: relative;
+    z-index: 1;
+}
+
+.about-side-image {
+    width: 180px;
+    height: auto;
+    border-radius: 0.5rem;
+    object-fit: cover;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.about-image-group {
+    position: absolute;
+    width: 180px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.about-image-group em {
+    margin-top: 0.3rem;
+    font-size: 0.9rem;
+    color: #555;
+    text-align: center;
+}
+
+.left {
+    left: -1px;
+}
+
+.right {
+    right: -1px;
+}
+
+/* Hide markdown images (they’ll be shown in mobile) */
+.about-text img {
+    display: none;
+}

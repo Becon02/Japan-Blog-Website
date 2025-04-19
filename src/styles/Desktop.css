@@ -1,0 +1,30 @@
+@media (min-width: 769px) {
+    .about-text em {
+        display: none;
+    }
+
+    .desktop-caption {
+        display: block;
+        text-align: center;
+        font-size: 0.9rem;
+        margin-top: 0.5rem;
+        margin-bottom: 1.5rem;
+        color: #555;
+    }
+
+    .texas-align {
+        top: 7rem;
+    }
+
+    .twitch-align {
+        top: 36rem;
+    }
+
+    .uni-align {
+        top: 46rem;
+    }
+
+    .today-align {
+        top: 75rem;
+    }
+}

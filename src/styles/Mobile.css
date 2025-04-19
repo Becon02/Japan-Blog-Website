@@ -1,0 +1,43 @@
+@media (max-width: 768px) {
+    .about-wrapper {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .about-image-group {
+        position: static;
+        width: 100%;
+        max-width: 200px;
+    }
+
+    .about-side-image {
+        display: none;
+    }
+
+    .about-text {
+        width: 100%;
+        padding: 0 1rem;
+    }
+
+    .about-text img {
+        display: block;
+        margin: 1.5rem auto 0.5rem;
+        width: 90%;
+        max-width: 200px;
+        border-radius: 0.5rem;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    }
+
+    .about-text em {
+        display: block;
+        text-align: center;
+        font-size: 0.9rem;
+        margin-top: 0.5rem;
+        margin-bottom: 1.5rem;
+        color: #555;
+    }
+
+    .desktop-caption {
+        display: none;
+    }
+}
