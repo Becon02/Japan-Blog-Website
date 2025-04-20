@@ -4,7 +4,7 @@ import HeaderBlock from "../components/HeaderBlock.astro";
 import { getCollection, type CollectionEntry } from "astro:content";
 
 // 💡 Change this number to test how many posts show initially
-const VISIBLE_COUNT = 5;
+const VISIBLE_COUNT = 2;
 
 const journalEntries = await getCollection("journal");
 
@@ -26,7 +26,7 @@ const renderedEntries = await Promise.all(
   <h1 class="main-title">Mi Diario de Viaje</h1>
 
   <!-- Use template string to pass visible count -->
-  <div id="journal-container" data-visible-count={`${VISIBLE_COUNT}`}>
+  <div id="journal-container" class="journal-wrapper" data-visible-count={`${VISIBLE_COUNT}`}>
     {
       renderedEntries.map((entry, index) => (
         <article

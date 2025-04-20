@@ -113,8 +113,8 @@ a {
 }
 
 .load-more-btn {
-    background-color: #e86b2e;
-    color: white;
+    background-color: #f6bfbc;
+    color: #fdeff2;
     font-weight: bold;
     border: none;
     padding: 1rem 2rem;
@@ -123,8 +123,10 @@ a {
     display: block;
     cursor: pointer;
     transition: background 0.3s ease;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    }
 }
 
 .load-more-btn:hover {
-    background-color: #d85c1f;
+    background-color: #f6bfbc;
 }
