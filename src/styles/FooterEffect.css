@@ -1,0 +1,47 @@
+/* FooterEffect.css */
+
+.forest-footer {
+    width: 100vw;
+    height: auto;
+    position: relative;
+    margin-top: -25rem;
+    /* Pull it closer to content */
+    padding-bottom: 0;
+    /* No extra space below */
+    overflow: hidden;
+    z-index: 0;
+}
+
+.forest-image {
+    width: 100vw;
+    height: auto;
+    max-height: 500px;
+    object-fit: cover;
+    display: block;
+    pointer-events: none;
+    user-select: none;
+    opacity: 0.95;
+    position: relative;
+    z-index: -1;
+    /* Sits slightly behind content */
+}
+
+/* Optional: make sure parent sections don't hide the image */
+.about-wrapper,
+.about-text {
+    position: relative;
+    z-index: 1;
+}
+
+@media (min-width: 769px) {
+    .forest-footer {
+        width: 100vw;
+        margin-top: -30rem;
+        /* Adjust as needed */
+    }
+
+    .forest-image {
+        max-height: 500px;
+        /* Adjust as needed */
+    }
+}

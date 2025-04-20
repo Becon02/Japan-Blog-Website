@@ -4,12 +4,13 @@ html,
 body {
     margin: 0;
     padding: 0;
-    font-family: sans-serif;
-    background: #f8f5ec;
-    color: #111;
+    font-family: 'Sawarabi', serif;
+    background: #fdeff2;
+    color: #2e2e2e;
     padding: 2rem 1rem;
     min-height: 100vh;
     text-align: center;
+    overflow-x: hidden;
 }
 
 nav {
@@ -38,7 +39,7 @@ a {
 .main-title {
     font-family: "Joti One", sans-serif;
     font-size: 2.5rem;
-    color: #e86b2e;
+    color: #f6bfbc;
     margin-top: 0.3rem;
     margin-bottom: 0.3rem;
 }
@@ -47,19 +48,22 @@ a {
     position: relative;
     display: flex;
     justify-content: center;
-    max-width: 1200px;
+    max-width: 1100px;
     margin: 0 auto;
     padding: 4rem 1rem;
+    z-index: 1;
 }
 
 .about-text {
     flex: 1;
+    font-family: 'Sawarabi', serif;
+    color: #696063;
     max-width: 600px;
     text-align: justify;
     font-size: 1.1rem;
     line-height: 1.7;
     position: relative;
-    z-index: 1;
+    z-index: 2;
 }
 
 .about-side-image {
@@ -81,7 +85,7 @@ a {
 .about-image-group em {
     margin-top: 0.3rem;
     font-size: 0.9rem;
-    color: #555;
+    color: #696063;
     text-align: center;
 }
 
@@ -96,4 +100,31 @@ a {
 /* Hide markdown images (they’ll be shown in mobile) */
 .about-text img {
     display: none;
+}
+
+/* Center Markdown images inside the journal posts */
+.journal-entry img {
+    display: block;
+    margin: 1.5rem auto;
+    width: 90%;
+    max-width: 500px;
+    border-radius: 0.5rem;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.load-more-btn {
+    background-color: #e86b2e;
+    color: white;
+    font-weight: bold;
+    border: none;
+    padding: 1rem 2rem;
+    border-radius: 0.5rem;
+    margin: 2rem auto;
+    display: block;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.load-more-btn:hover {
+    background-color: #d85c1f;
 }

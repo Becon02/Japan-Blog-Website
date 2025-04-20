@@ -1,10 +1,93 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
 import HeaderBlock from "../components/HeaderBlock.astro";
+import { getCollection, type CollectionEntry } from "astro:content";
+
+// 💡 Change this number to test how many posts show initially
+const VISIBLE_COUNT = 5;
+
+const journalEntries = await getCollection("journal");
+
+const sortedEntries = journalEntries.sort(
+  (a: CollectionEntry<"journal">, b: CollectionEntry<"journal">) =>
+    new Date(b.data.date).getTime() - new Date(a.data.date).getTime()
+);
+
+const renderedEntries = await Promise.all(
+  sortedEntries.map(async (entry: CollectionEntry<"journal">) => {
+    const { Content } = await entry.render();
+    return { ...entry, Content };
+  })
+);
 ---
 
 <BaseLayout>
   <HeaderBlock slot="header" />
+  <h1 class="main-title">Mi Diario de Viaje</h1>
 
-  <!-- 📄 Page-specific content goes here -->
+  <!-- Use template string to pass visible count -->
+  <div id="journal-container" data-visible-count={`${VISIBLE_COUNT}`}>
+    {
+      renderedEntries.map((entry, index) => (
+        <article
+          class="journal-entry"
+          style={`display: ${index < VISIBLE_COUNT ? "block" : "none"}`}
+        >
+          <h2 class="journal-title">{entry.data.title}</h2>
+          <p class="journal-date">
+            {(() => {
+              const formatted = new Date(entry.data.date).toLocaleDateString(
+                "es-ES",
+                {
+                  weekday: "long",
+                  year: "numeric",
+                  month: "long",
+                  day: "numeric",
+                }
+              );
+
+              return formatted
+                .replace(/^\w/, (c) => c.toUpperCase())
+                .replace(
+                  / de (\w)/,
+                  (_, m) => ` de ${m.charAt(0).toUpperCase()}${m.slice(1)}`
+                );
+            })()}
+          </p>
+          <entry.Content />
+        </article>
+      ))
+    }
+  </div>
+
+  <button id="load-more" class="load-more-btn">Cargar más</button>
+
+  <script type="module">
+    // Wait for DOM to load
+    window.addEventListener("DOMContentLoaded", () => {
+      const container = document.getElementById("journal-container");
+      const visibleCount = parseInt(container.dataset.visibleCount || "3", 10);
+      const entries = [...document.querySelectorAll(".journal-entry")];
+      const btn = document.getElementById("load-more");
+      let visible = visibleCount;
+
+      btn.addEventListener("click", () => {
+        const nextVisible = Math.min(visible + visibleCount, entries.length);
+
+        for (let i = visible; i < nextVisible; i++) {
+          if (entries[i]) entries[i].style.display = "block";
+        }
+
+        visible = nextVisible;
+
+        if (visible >= entries.length) {
+          btn.style.display = "none";
+        }
+      });
+
+      if (entries.length <= visibleCount) {
+        btn.style.display = "none";
+      }
+    });
+  </script>
 </BaseLayout>
