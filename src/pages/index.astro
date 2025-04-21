@@ -1,20 +1,20 @@
 ---
-import BaseLayout from "../layouts/BaseLayout.astro";
-import HeaderBlock from "../components/HeaderBlock.astro";
+import BaseLayout from "../layouts/base_layout.astro";
+import HeaderBlock from "../components/header_block.astro";
 import { getCollection, type CollectionEntry } from "astro:content";
 
 // 💡 Change this number to test how many posts show initially
 const VISIBLE_COUNT = 2;
 
-const journalEntries = await getCollection("journal");
+const journalEntries = await getCollection("journal_docs");
 
 const sortedEntries = journalEntries.sort(
-  (a: CollectionEntry<"journal">, b: CollectionEntry<"journal">) =>
+  (a: CollectionEntry<"journal_docs">, b: CollectionEntry<"journal_docs">) =>
     new Date(b.data.timestamp).getTime() - new Date(a.data.timestamp).getTime()
 );
 
 const renderedEntries = await Promise.all(
-  sortedEntries.map(async (entry: CollectionEntry<"journal">) => {
+  sortedEntries.map(async (entry: CollectionEntry<"journal_docs">) => {
     const { Content } = await entry.render();
     return { ...entry, Content };
   })

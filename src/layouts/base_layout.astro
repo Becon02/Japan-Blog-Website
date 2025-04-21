@@ -4,11 +4,14 @@ const {
   subtitle = "Un viajero con mochila y camara, siguiendo su propio camino",
 } = Astro.props;
 
-import "../styles/Base.css";
-import "../styles/Desktop.css";
-import "../styles/Mobile.css";
-import "../styles/Journal.css";
-import NavBar from "../components/NavBar.astro";
+import "../styles/base_style.css";
+import "../styles/desktop_config.css";
+import "../styles/mobile_config.css";
+import "../styles/journal_style.css";
+import "../styles/gallery/gallery_style.css";
+import "../styles/gallery/gallery_detail_style.css";
+import "../styles/links_style.css";
+import NavBar from "../components/navigation_bar.astro";
 ---
 
 <html lang="es">
@@ -34,8 +37,7 @@ import NavBar from "../components/NavBar.astro";
     <NavBar />
 
     <hr class="header-divider" />
-    
+
     <slot />
   </body>
-
 </html>

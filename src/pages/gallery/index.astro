@@ -1,13 +1,13 @@
 ---
-import BaseLayout from "../layouts/BaseLayout.astro";
-import HeaderBlock from "../components/HeaderBlock.astro";
-import "../styles/Gallery.css";
-
+import BaseLayout from "../../layouts/base_layout.astro";
+import HeaderBlock from "../../components/header_block.astro";
 import fs from "fs";
 import path from "path";
 
-const galleryFolder = path.resolve("./public/gallery");
+// 👇 Adjusted for dynamic linking
+const galleryFolder = path.resolve("./public/gallery_img");
 const files = fs.readdirSync(galleryFolder);
+
 
 // Filtra imágenes y las ordena por fecha de creación (más reciente primero)
 const images = files
@@ -15,9 +15,11 @@ const images = files
   .map((file: string) => {
     const filePath = path.join(galleryFolder, file);
     const birthtimeMs = fs.statSync(filePath).birthtimeMs;
+    const slug = file.replace(/\.[^/.]+$/, "").replace("_info.md",""); // Remove file extension for slug
     return {
-      src: `/gallery/${file}`,
+      src: `/gallery_img/${file}`,
       createdAt: birthtimeMs,
+      slug,
     };
   })
   .sort((a, b) => b.createdAt - a.createdAt);
@@ -26,13 +28,14 @@ const images = files
 <BaseLayout>
   <HeaderBlock slot="header" />
 
-  <!-- 📄 Page-specific content goes here -->
   <h1 class="main-title">Galería de Fotos</h1>
 
   <div class="gallery-grid">
     {
       images.map((img) => (
-        <img src={img.src} alt="Foto del viaje" loading="lazy" />
+        <a href={`/gallery/${img.slug}`}>
+          <img src={img.src} alt="Foto del viaje" loading="lazy" />
+        </a>
       ))
     }
   </div>

@@ -1,0 +1,36 @@
+.image-detail-page {
+    max-width: 800px;
+    margin: 4rem auto;
+    padding: 1rem;
+    text-align: center;
+}
+
+.gallery-date {
+    font-size: 0.95rem;
+    font-style: italic;
+    color: #888;
+    margin-bottom: 0.5rem;
+}
+
+.big-image {
+    width: 70%;
+    max-width: 600px;
+    height: auto;
+    border-radius: 0.3rem;
+    margin: 1rem auto;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.image-description {
+    margin-top: 0.3rem;
+    font-size: 0.9rem;
+    color: #696063;
+    text-align: center;
+}
+
+.image-body {
+    text-align: justify;
+    margin-top: 2rem;
+    line-height: 1.7;
+    font-family: 'Sawarabi', serif;
+}

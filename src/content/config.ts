@@ -8,6 +8,18 @@ const journalCollection = defineCollection({
   }),
 });
 
+const galleryCollection = defineCollection({
+  type: "content",
+  schema: z.object({
+    title: z.string(),
+    date: z.date(),
+    description: z.string(),
+    image: z.string(), // filename of the image in /public/gallery
+  }),
+});
+
+
 export const collections = {
-  journal: journalCollection,
+  "journal_docs": journalCollection,
+  "gallery_image_info": galleryCollection,
 };

@@ -1,10 +1,38 @@
 ---
-import BaseLayout from "../layouts/BaseLayout.astro";
-import HeaderBlock from "../components/HeaderBlock.astro";
+import BaseLayout from "../layouts/base_layout.astro";
+import HeaderBlock from "../components/header_block.astro";
 ---
 
 <BaseLayout>
   <HeaderBlock slot="header" />
 
-  <!-- 📄 Page-specific content goes here -->
+  <section class="links-page">
+    <h1 class="main-title">Sígueme en mis redes sociales</h1>
+
+    <div class="social-links">
+      <a
+        href="https://www.instagram.com/martinnsanzz_/"
+        target="_blank"
+        class="link-button instagram"
+      >
+        📸 Instagram
+      </a>
+
+      <a
+        href="https://www.tiktok.com/@martinnsanzz_"
+        target="_blank"
+        class="link-button tiktok"
+      >
+        🎵 TikTok
+      </a>
+
+      <a
+        href="https://www.gofundme.com/f/recorriendo-japon-andando"
+        target="_blank"
+        class="link-button gofundme"
+      >
+        ❤️ Apóyame en GoFundMe
+      </a>
+    </div>
+  </section>
 </BaseLayout>

@@ -1,0 +1,49 @@
+---
+import BaseLayout from "../../layouts/base_layout.astro";
+import HeaderBlock from "../../components/header_block.astro";
+import type { CollectionEntry } from "astro:content";
+import { getEntry, getCollection } from "astro:content";
+
+export async function getStaticPaths() {
+  const entries = await getCollection("gallery_image_info");
+
+  return entries.map((entry) => ({
+    params: { slug: entry.slug },
+    props: { entry },
+  }));
+}
+
+const { entry } = Astro.props;
+const { data, render } = entry;
+const { Content } = await render();
+
+// Format the date in Spanish style
+const formattedDate = new Date(data.date)
+  .toLocaleDateString("es-ES", {
+    weekday: "long",
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+  })
+  .replace(/^\w/, (c) => c.toUpperCase())
+  .replace(
+    / de (\w)/,
+    (_, m) => ` de ${m.charAt(0).toUpperCase()}${m.slice(1)}`
+  );
+---
+
+<BaseLayout>
+  <HeaderBlock slot="header" />
+
+  <div class="image-detail-page">
+    <p class="gallery-date">{formattedDate}</p>
+
+    <img src={data.image} alt={data.title} class="big-image" />
+
+    <p class="image-description">{data.description}</p>
+
+    <article class="image-body">
+      <Content />
+    </article>
+  </div>
+</BaseLayout>
