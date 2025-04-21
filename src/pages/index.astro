@@ -3,22 +3,28 @@ import BaseLayout from "../layouts/base_layout.astro";
 import HeaderBlock from "../components/header_block.astro";
 import { getCollection, type CollectionEntry } from "astro:content";
 
-// 💡 Change this number to test how many posts show initially
 const VISIBLE_COUNT = 2;
 
-const journalEntries = await getCollection("journal_docs");
+let renderedEntries: { data: any; Content: any }[] = [];
 
-const sortedEntries = journalEntries.sort(
-  (a: CollectionEntry<"journal_docs">, b: CollectionEntry<"journal_docs">) =>
-    new Date(b.data.timestamp).getTime() - new Date(a.data.timestamp).getTime()
-);
+try {
+  const journalEntries = await getCollection("journal_docs");
 
-const renderedEntries = await Promise.all(
-  sortedEntries.map(async (entry: CollectionEntry<"journal_docs">) => {
-    const { Content } = await entry.render();
-    return { ...entry, Content };
-  })
-);
+  const sortedEntries = journalEntries.sort(
+    (a: CollectionEntry<"journal_docs">, b: CollectionEntry<"journal_docs">) =>
+      new Date(b.data.timestamp).getTime() -
+      new Date(a.data.timestamp).getTime()
+  );
+
+  renderedEntries = await Promise.all(
+    sortedEntries.map(async (entry) => {
+      const { Content } = await entry.render();
+      return { ...entry, Content };
+    })
+  );
+} catch (e) {
+  console.warn("⚠️ No se encontraron entradas en journal_docs");
+}
 ---
 
 <BaseLayout>

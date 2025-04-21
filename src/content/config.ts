@@ -18,18 +18,7 @@ const galleryCollection = defineCollection({
   }),
 });
 
-
-
-const linksCollection = defineCollection({
-  type: "content",
-  schema: z.object({
-    title: z.string(),
-    description: z.string(),
-  }),
-});
-
 export const collections = {
   "journal_docs": journalCollection,
   "gallery_image_info": galleryCollection,
-  "links_text": linksCollection,
 };

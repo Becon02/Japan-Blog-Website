@@ -4,25 +4,31 @@ import HeaderBlock from "../../components/header_block.astro";
 import fs from "fs";
 import path from "path";
 
-// 👇 Adjusted for dynamic linking
-const galleryFolder = path.resolve("./public/gallery_img");
-const files = fs.readdirSync(galleryFolder);
+let images: { src: string; createdAt: number; slug: string }[] = [];
 
+try {
+  const galleryFolder = path.resolve("./public/gallery_img");
 
-// Filtra imágenes y las ordena por fecha de creación (más reciente primero)
-const images = files
-  .filter((file: string) => /\.(jpg|jpeg|png|gif)$/i.test(file))
-  .map((file: string) => {
-    const filePath = path.join(galleryFolder, file);
-    const birthtimeMs = fs.statSync(filePath).birthtimeMs;
-    const slug = file.replace(/\.[^/.]+$/, "").replace("_info.md",""); // Remove file extension for slug
-    return {
-      src: `/gallery_img/${file}`,
-      createdAt: birthtimeMs,
-      slug,
-    };
-  })
-  .sort((a, b) => b.createdAt - a.createdAt);
+  if (fs.existsSync(galleryFolder)) {
+    const files = fs.readdirSync(galleryFolder);
+
+    images = files
+      .filter((file: string) => /\.(jpg|jpeg|png|gif)$/i.test(file))
+      .map((file: string) => {
+        const filePath = path.join(galleryFolder, file);
+        const birthtimeMs = fs.statSync(filePath).birthtimeMs;
+        const slug = file.replace(/\.[^/.]+$/, "");
+        return {
+          src: `/gallery_img/${file}`,
+          createdAt: birthtimeMs,
+          slug,
+        };
+      })
+      .sort((a, b) => b.createdAt - a.createdAt);
+  }
+} catch (e) {
+  console.warn("⚠️ No se pudo cargar la galería de imágenes.");
+}
 ---
 
 <BaseLayout>

@@ -5,7 +5,12 @@ import type { CollectionEntry } from "astro:content";
 import { getEntry, getCollection } from "astro:content";
 
 export async function getStaticPaths() {
-  const entries = await getCollection("gallery_image_info");
+  let entries: CollectionEntry<"gallery_image_info">[] = [];
+  try {
+    entries = await getCollection("gallery_image_info");
+  } catch (e) {
+    console.warn("⚠️ No se encontraron imágenes en gallery_image_info");
+  }
 
   return entries.map((entry) => ({
     params: { slug: entry.slug },
@@ -14,10 +19,14 @@ export async function getStaticPaths() {
 }
 
 const { entry } = Astro.props;
+
+if (!entry) {
+  throw new Error("Entrada no encontrada");
+}
+
 const { data, render } = entry;
 const { Content } = await render();
 
-// Format the date in Spanish style
 const formattedDate = new Date(data.date)
   .toLocaleDateString("es-ES", {
     weekday: "long",
