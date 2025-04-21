@@ -1,38 +1,19 @@
 ---
 import BaseLayout from "../layouts/base_layout.astro";
 import HeaderBlock from "../components/header_block.astro";
+
+// ✅ Await the .md file
+const { default: Content, frontmatter } = await import(
+  "../content/pages_content/links_text.md"
+);
 ---
 
 <BaseLayout>
   <HeaderBlock slot="header" />
 
-  <section class="links-page">
-    <h1 class="main-title">Sígueme en mis redes sociales</h1>
-
-    <div class="social-links">
-      <a
-        href="https://www.instagram.com/martinnsanzz_/"
-        target="_blank"
-        class="link-button instagram"
-      >
-        📸 Instagram
-      </a>
-
-      <a
-        href="https://www.tiktok.com/@martinnsanzz_"
-        target="_blank"
-        class="link-button tiktok"
-      >
-        🎵 TikTok
-      </a>
-
-      <a
-        href="https://www.gofundme.com/f/recorriendo-japon-andando"
-        target="_blank"
-        class="link-button gofundme"
-      >
-        ❤️ Apóyame en GoFundMe
-      </a>
+  <div class="links-page">
+    <div class="prose">
+      <Content />
     </div>
-  </section>
+  </div>
 </BaseLayout>
