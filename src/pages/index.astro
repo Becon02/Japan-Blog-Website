@@ -10,7 +10,7 @@ const journalEntries = await getCollection("journal");
 
 const sortedEntries = journalEntries.sort(
   (a: CollectionEntry<"journal">, b: CollectionEntry<"journal">) =>
-    new Date(b.data.date).getTime() - new Date(a.data.date).getTime()
+    new Date(b.data.timestamp).getTime() - new Date(a.data.timestamp).getTime()
 );
 
 const renderedEntries = await Promise.all(
@@ -26,7 +26,11 @@ const renderedEntries = await Promise.all(
   <h1 class="main-title">Mi Diario de Viaje</h1>
 
   <!-- Use template string to pass visible count -->
-  <div id="journal-container" class="journal-wrapper" data-visible-count={`${VISIBLE_COUNT}`}>
+  <div
+    id="journal-container"
+    class="journal-wrapper"
+    data-visible-count={`${VISIBLE_COUNT}`}
+  >
     {
       renderedEntries.map((entry, index) => (
         <article

@@ -1,10 +1,39 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
 import HeaderBlock from "../components/HeaderBlock.astro";
+import "../styles/Gallery.css";
+
+import fs from "fs";
+import path from "path";
+
+const galleryFolder = path.resolve("./public/gallery");
+const files = fs.readdirSync(galleryFolder);
+
+// Filtra imágenes y las ordena por fecha de creación (más reciente primero)
+const images = files
+  .filter((file: string) => /\.(jpg|jpeg|png|gif)$/i.test(file))
+  .map((file: string) => {
+    const filePath = path.join(galleryFolder, file);
+    const birthtimeMs = fs.statSync(filePath).birthtimeMs;
+    return {
+      src: `/gallery/${file}`,
+      createdAt: birthtimeMs,
+    };
+  })
+  .sort((a, b) => b.createdAt - a.createdAt);
 ---
 
 <BaseLayout>
   <HeaderBlock slot="header" />
 
   <!-- 📄 Page-specific content goes here -->
+  <h1 class="main-title">Galería de Fotos</h1>
+
+  <div class="gallery-grid">
+    {
+      images.map((img) => (
+        <img src={img.src} alt="Foto del viaje" loading="lazy" />
+      ))
+    }
+  </div>
 </BaseLayout>

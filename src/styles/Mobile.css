@@ -40,4 +40,8 @@
     .desktop-caption {
         display: none;
     }
+
+    .gallery-grid {
+        column-count: 1;
+    }
 }

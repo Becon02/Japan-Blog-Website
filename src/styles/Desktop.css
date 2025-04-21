@@ -28,4 +28,8 @@
     .today-align {
         top: 75rem;
     }
+
+    .gallery-grid {
+        column-count: 2;
+    }
 }
